@@ -1,6 +1,9 @@
 ﻿import { Stack } from "expo-router";
-export default function () {
-	return (
+import { Provider } from "react-redux";
+import store from "../redux/store";
+
+export default () => (
+	<Provider store={store}>
 		<Stack>
 			<Stack.Screen
 				name="index"
@@ -8,8 +11,6 @@ export default function () {
 					headerShown: false,
 				}}
 			/>
-			<Stack.Screen name="second" options={{ headerTitle: "Second Screen" }} />
-			<Stack.Screen name="third" options={{ headerTitle: "Third Screen" }} />
 		</Stack>
-	);
-}
+	</Provider>
+);

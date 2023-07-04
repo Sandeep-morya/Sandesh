@@ -9,14 +9,14 @@ interface Props extends PropsWithChildren {
 const S = {
 	Pressable: styled(
 		Pressable,
-		"bg-white border border-gray-200 px-3 py-2 rounded active:bg-blue-100",
+		"bg-[#1da3dd] px-3 py-3 rounded active:bg-[#0c92cc] items-center",
 	),
-	Text: styled(Text, "font-bold text-blue-500"),
+	Text: styled(Text, "text-base  font-semibold text-white"),
 };
 
 export default function Button(props: Props) {
 	return (
-		<S.Pressable onPress={props.onPress}>
+		<S.Pressable android_ripple={{ color: "#0c92cc" }} onPress={props.onPress}>
 			<S.Text>{props.children}</S.Text>
 		</S.Pressable>
 	);

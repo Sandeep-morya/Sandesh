@@ -21,6 +21,15 @@
 				"foregroundImage": "./assets/icon.png",
 				"backgroundColor": "#ffffff"
 			}
-		}
+		},
+		"plugins": [
+			[
+				"expo-camera",
+				{
+					"cameraPermission": "Allow Sandesh to access your camera.",
+					"microphonePermission": "Allow Sandesh to access you Microphone"
+				}
+			]
+		]
 	}
 }
