@@ -1,9 +1,10 @@
 ﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { IAppSettigs, Language } from "../types";
+import { IAppSettigs, Language, Theme } from "../types";
 import { getData, storeData } from "../utlis/asyncStorage";
 
 let initialState: IAppSettigs = {
-	theme: "light",
+	mode: "light",
+	theme: "default",
 	language: "en",
 };
 
@@ -19,8 +20,12 @@ const AppSettingSlice = createSlice({
 	name: "app-settings",
 	initialState,
 	reducers: {
-		toggleTheme(state) {
-			state.theme = state.theme === "dark" ? "light" : "dark";
+		toggleColorMode(state) {
+			state.mode = state.mode === "dark" ? "light" : "dark";
+			storeData("sandesh-app-settings", state);
+		},
+		changeTheme(state, action: PayloadAction<Theme>) {
+			state.theme = action.payload;
 			storeData("sandesh-app-settings", state);
 		},
 		changeLanguage(state, action: PayloadAction<Language>) {
@@ -35,5 +40,6 @@ const AppSettingSlice = createSlice({
 	},
 });
 
-export const { toggleTheme, changeLanguage } = AppSettingSlice.actions;
+export const { toggleColorMode, changeTheme, changeLanguage } =
+	AppSettingSlice.actions;
 export default AppSettingSlice.reducer;

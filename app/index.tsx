@@ -3,7 +3,7 @@ import React, { useLayoutEffect } from "react";
 import { useDispatch, useSlice } from "../redux/utils";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { fetchAppSettings, toggleTheme } from "../redux/appSettings";
+import { fetchAppSettings, toggleColorMode } from "../redux/appSettings";
 import { StatusBar } from "expo-status-bar";
 import { logo } from "../assets";
 import Button from "../components/Button";
@@ -15,20 +15,20 @@ interface IDot {
 }
 
 const Dot = ({ active }: IDot) => {
-	const { theme } = useSlice("appSettings");
-	const color = active ? "#1da3dd" : theme === "dark" ? "white" : "black";
+	const { mode } = useSlice("appSettings");
+	const color = active ? "#1da3dd" : mode === "dark" ? "white" : "black";
 	return (
 		<Entypo name="dot-single" style={{ margin: -6 }} size={24} color={color} />
 	);
 };
 
 export default function index() {
-	const { theme } = useSlice("appSettings");
+	const { mode } = useSlice("appSettings");
 	const dispatch = useDispatch();
 	const router = useRouter();
 
-	const bg = theme === "light" ? "bg-gray-200" : "bg-slate-800";
-	const text = theme === "light" ? "text-black" : "text-white";
+	const bg = mode === "light" ? "bg-gray-200" : "bg-slate-800";
+	const text = mode === "light" ? "text-black" : "text-white";
 
 	useLayoutEffect(() => {
 		dispatch(fetchAppSettings());
@@ -39,10 +39,10 @@ export default function index() {
 			<View className="flex-1">
 				<View className="self-end p-4">
 					<Ionicons
-						name={theme === "dark" ? "moon" : "sunny"}
+						name={mode === "dark" ? "moon" : "sunny"}
 						size={24}
 						color="#1da3dd"
-						onPress={() => dispatch(toggleTheme())}
+						onPress={() => dispatch(toggleColorMode())}
 					/>
 				</View>
 				<View className="w-full h-[500]  justify-start pt-16 items-center">
@@ -71,7 +71,7 @@ export default function index() {
 				</Button>
 			</View>
 
-			<StatusBar style={theme === "dark" ? "light" : "dark"} />
+			<StatusBar style={mode === "dark" ? "light" : "dark"} />
 		</SafeAreaView>
 	);
 }
