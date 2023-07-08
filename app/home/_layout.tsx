@@ -37,6 +37,7 @@ const HomeLayout = () => {
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="chatbox-ellipses-outline" {...{ color, size }} />
 					),
+					headerTitle: "Sandesh",
 					title: "Messages",
 				}}
 			/>
