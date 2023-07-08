@@ -34,46 +34,47 @@ export default function index() {
 		dispatch(fetchAppSettings());
 	}, []);
 
-	return <Redirect href={"/home"} />;
+	// return <Redirect href={"/home"} />;
 
 	return (
-		<SafeAreaView className={`flex-1 ${bg} transition-all duration-700;`}>
-			<View className="flex-1">
-				<View className="self-end p-4">
-					<Ionicons
-						name={mode === "dark" ? "moon" : "sunny"}
-						size={24}
-						color="#1da3dd"
-						onPress={() => dispatch(toggleColorMode())}
-					/>
-				</View>
-				<View className="w-full h-[500]  justify-start pt-16 items-center">
-					<Image className="w-[150] h-[150]" source={logo} alt="logo" />
-					<Text className={`${text} text-2xl font-bold mt-4 mb-1`}>
-						Sandesh
-					</Text>
-					<Text className={`text-gray-500`}>
-						The world's fastest messaging app.
-					</Text>
-					<Text className={`text-gray-500`}>It is free and secure.</Text>
-					<View className="flex-row mt-4">
-						<Dot active />
-						<Dot />
-						<Dot />
-						<Dot />
-						<Dot />
-						<Dot />
+		<>
+			<SafeAreaView className={`flex-1 ${bg} transition-all duration-700;`}>
+				<View className="flex-1">
+					<View className="self-end p-4">
+						<Ionicons
+							name={mode === "dark" ? "moon" : "sunny"}
+							size={24}
+							color="#1da3dd"
+							onPress={() => dispatch(toggleColorMode())}
+						/>
+					</View>
+					<View className="w-full h-[500]  justify-start pt-16 items-center">
+						<Image className="w-[150] h-[150]" source={logo} alt="logo" />
+						<Text className={`${text} text-2xl font-bold mt-4 mb-1`}>
+							Sandesh
+						</Text>
+						<Text className={`text-gray-500`}>
+							The world's fastest messaging app.
+						</Text>
+						<Text className={`text-gray-500`}>It is free and secure.</Text>
+						<View className="flex-row mt-4">
+							<Dot active />
+							<Dot />
+							<Dot />
+							<Dot />
+							<Dot />
+							<Dot />
+						</View>
 					</View>
 				</View>
-			</View>
 
-			<View className="justify-self-end my-16 px-8">
-				<Button onPress={() => router.push("/register")}>
-					Start Messaging
-				</Button>
-			</View>
-
+				<View className="justify-self-end my-16 px-8">
+					<Button onPress={() => router.push("/register")}>
+						Start Messaging
+					</Button>
+				</View>
+			</SafeAreaView>
 			<StatusBar style={mode === "dark" ? "light" : "dark"} />
-		</SafeAreaView>
+		</>
 	);
 }
