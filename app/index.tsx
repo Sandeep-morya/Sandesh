@@ -8,7 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import { logo } from "../assets";
 import Button from "../components/Button";
 
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 
 interface IDot {
 	active?: boolean;
@@ -33,6 +33,8 @@ export default function index() {
 	useLayoutEffect(() => {
 		dispatch(fetchAppSettings());
 	}, []);
+
+	return <Redirect href={"/home"} />;
 
 	return (
 		<SafeAreaView className={`flex-1 ${bg} transition-all duration-700;`}>

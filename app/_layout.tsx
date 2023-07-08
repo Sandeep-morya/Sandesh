@@ -1,7 +1,6 @@
 ﻿import { Stack } from "expo-router";
 import { Provider } from "react-redux";
 import store from "../redux/store";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const disableHeader = { headerShown: false };
 
