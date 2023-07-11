@@ -34,7 +34,7 @@ export default function index() {
 		dispatch(fetchAppSettings());
 	}, []);
 
-	// return <Redirect href={"/home"} />;
+	return <Redirect href={"/home"} />;
 
 	return (
 		<>

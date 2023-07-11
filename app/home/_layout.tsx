@@ -1,11 +1,12 @@
-﻿import { Tabs, Slot } from "expo-router";
-const disableHeader = { headerShown: false };
+﻿import { Tabs } from "expo-router";
 import HeaderRight from "../../components/HeaderRight";
 import { Ionicons, Feather, AntDesign } from "@expo/vector-icons";
 import { useSlice } from "../../redux/utils";
+import ChatHeader from "../../components/ChatHeader";
 
-const HomeLayout = () => {
+export default () => {
 	const { mode } = useSlice("appSettings");
+
 	return (
 		<Tabs
 			screenOptions={{
@@ -14,9 +15,7 @@ const HomeLayout = () => {
 					backgroundColor: mode === "dark" ? "#000000" : "#1da3dd",
 					shadowColor: "black",
 				},
-
 				headerTintColor: "white",
-
 				tabBarLabelStyle: {
 					fontSize: 12,
 					marginBottom: 5,
@@ -37,7 +36,6 @@ const HomeLayout = () => {
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="chatbox-ellipses-outline" {...{ color, size }} />
 					),
-					headerTitle: "Sandesh",
 					title: "Messages",
 				}}
 			/>
@@ -59,7 +57,14 @@ const HomeLayout = () => {
 					title: "Contacts",
 				}}
 			/>
+			<Tabs.Screen
+				name="chat/[id]"
+				options={{
+					href: null,
+					tabBarStyle: { display: "none" },
+					header: () => <ChatHeader />,
+				}}
+			/>
 		</Tabs>
 	);
 };
-export default HomeLayout;

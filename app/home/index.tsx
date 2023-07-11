@@ -1,4 +1,4 @@
-﻿import { View, Text } from "react-native";
+﻿﻿import { View, Text } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import { useSlice } from "../../redux/utils";
@@ -30,7 +30,7 @@ export default function index() {
 					}}
 				/>
 			</View>
-			<View className={`flex-1 pt-2 bg-gray-900 rounded-t-xl shadow`}>
+			<View className={`flex-1 pt-2 ${bg} rounded-t-xl shadow`}>
 				<FlatList
 					data={[11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
 					renderItem={({ item }) => <ChatBrief x={item} />}

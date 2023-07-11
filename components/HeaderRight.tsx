@@ -8,7 +8,7 @@ interface IProps {
 }
 export default function HeaderRight({ tintColor }: IProps) {
 	return (
-		<View className="flex-row items-center gap-6 px-3">
+		<View className={`flex-row items-center gap-6 px-3`}>
 			<Ionicons name="camera-outline" size={24} color={tintColor} />
 			<Ionicons name="search" size={22} color={tintColor} />
 			<Ionicons name="settings-outline" size={22} color={tintColor} />

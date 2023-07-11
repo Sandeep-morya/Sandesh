@@ -1,13 +1,17 @@
 ﻿import React from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { useSlice } from "../redux/utils";
+import { useRouter } from "expo-router";
 
 const StoryBubble = ({ x }: { x: number }) => {
 	const { mode } = useSlice("appSettings");
+	const router = useRouter();
 	const bg = mode === "light" ? "bg-gray-200" : "bg-slate-800";
 	const text = mode === "light" ? "text-black" : "text-white";
 	return (
-		<Pressable className="w-[60] h-[60] rounded-full relative items-center">
+		<Pressable
+			onPress={() => router.push(`/home/messages/story/${x}`)}
+			className="w-[60] h-[60] rounded-full relative items-center">
 			<Image
 				className="w-full h-full rounded-full "
 				source={{ uri: `https://picsum.photos/50?random=${x}` }}
