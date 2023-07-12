@@ -1,22 +1,36 @@
 ﻿import { View, Text, Image, TextInput } from "react-native";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useSlice } from "../redux/utils";
-import { Redirect, useRouter } from "expo-router";
+import { Redirect, useLocalSearchParams, useRouter } from "expo-router";
 import OTPAcceptor from "../components/OTPAcceptor";
 
 export default function confirmRegistration() {
 	const [otp, setOtp] = useState("");
+	const [verified, setVerified] = useState(false);
 	const { mode } = useSlice("appSettings");
 	const router = useRouter();
+	const { contryCode, phoneNumber, otp: OTP } = useLocalSearchParams();
 	const bg = mode === "light" ? "bg-gray-200" : "bg-slate-800";
 	const text = mode === "light" ? "text-black" : "text-white";
 
-	if (otp.length === 6) {
-		console.log(otp.length);
-		return <Redirect href={"/home"} />;
+	useEffect(() => {
+		if (otp === OTP) {
+			setVerified(true);
+		}
+	}, [otp, OTP]);
+
+	if (verified) {
+		return (
+			<Redirect
+				href={{
+					pathname: "/home",
+					params: { phoneNumber },
+				}}
+			/>
+		);
 	}
 
 	return (
@@ -43,7 +57,9 @@ export default function confirmRegistration() {
 				<Text className={`text-gray-500`}>
 					Please enter the code we have send to
 				</Text>
-				<Text className={`text-gray-500`}>{"+91 - 9988885304"}</Text>
+				<Text className={`text-gray-500`}>
+					{`+${contryCode} - ${phoneNumber}`}
+				</Text>
 			</View>
 
 			<View className="items-center w-[65%] self-center relative">

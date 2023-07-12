@@ -1,10 +1,15 @@
-﻿import { View, Text, TextInput, Pressable } from "react-native";
+﻿import { View, Text, Image, TextInput, Pressable } from "react-native";
 import { useState, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSlice } from "../redux/utils";
 import { useRouter } from "expo-router";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { countries } from "../data";
 
+// function getFlagEmoji(countryCode: string) {
+// 	return countryCode
+// 		.replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+// }
 export default function register() {
 	const { mode } = useSlice("appSettings");
 	const router = useRouter();
@@ -36,7 +41,24 @@ export default function register() {
 			</View>
 
 			<View className="border border-gray-500 p-3 rounded-md flex-row justify-between items-center">
-				<Text className={`text-gray-500 text-base`}>Country</Text>
+				{countries[contryCode] ? (
+					<View className="flex-row items-center gap-6">
+						<Image
+							className="w-[32] h-[20]"
+							source={{
+								uri: `https://flagsapi.com/${countries[contryCode].code}/flat/32.png`,
+							}}
+							alt="Country"
+						/>
+						<Text className={`text-gray-500 text-base`}>
+							{countries[contryCode].name}
+						</Text>
+					</View>
+				) : (
+					<Text className={`text-gray-500 text-base`}>Country</Text>
+					// <Text className="text-xl"> {getFlagEmoji("PK")}</Text>
+				)}
+
 				<FontAwesome name="angle-right" size={24} color={iconColor} />
 			</View>
 
@@ -46,7 +68,7 @@ export default function register() {
 					keyboardType="numeric"
 					placeholder="+"
 					placeholderTextColor={iconColor}
-					maxLength={4}
+					maxLength={6}
 					value={contryCode}
 					onChangeText={(e) => handleContryCode(e)}
 				/>
@@ -64,7 +86,12 @@ export default function register() {
 
 			<View className="items-end pt-10">
 				<Pressable
-					onPress={() => router.push("/confirmRegistration")}
+					onPress={() =>
+						router.push({
+							pathname: "/confirmRegistration",
+							params: { contryCode, phoneNumber, otp: "123456" },
+						})
+					}
 					className="bg-[#1da3dd] rounded-full p-4">
 					<Ionicons name="arrow-forward" size={25} color="white" />
 				</Pressable>
