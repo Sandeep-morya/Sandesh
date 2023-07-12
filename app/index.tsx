@@ -34,8 +34,6 @@ export default function index() {
 		dispatch(fetchAppSettings());
 	}, []);
 
-	return <Redirect href={"/home"} />;
-
 	return (
 		<>
 			<SafeAreaView className={`flex-1 ${bg} transition-all duration-700;`}>
