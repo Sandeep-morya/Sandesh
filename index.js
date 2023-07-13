@@ -1,1 +1,0 @@
-﻿import "expo-router/entry";

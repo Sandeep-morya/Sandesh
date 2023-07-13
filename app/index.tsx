@@ -1,78 +1,76 @@
-﻿import { View, Text, Image } from "react-native";
+﻿import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useLayoutEffect } from "react";
-import { useDispatch, useSlice } from "../redux/utils";
-import { Ionicons, Entypo } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { fetchAppSettings, toggleColorMode } from "../redux/appSettings";
-import { StatusBar } from "expo-status-bar";
-import { logo } from "../assets";
-import Button from "../components/Button";
+import { useDispatch, useSlice } from "../src/utils/redux";
+import {
+	fetchAppSettings,
+	toggleColorMode,
+} from "../src/toolkit/slices/appSettings";
 
-import { Redirect, useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import theme from "../src/globalStyle";
+import GradientButton from "../src/components/common/GradientButton";
 
-interface IDot {
-	active?: boolean;
-}
+import { router } from "expo-router";
+import Dot from "../src/components/common/Dot";
 
-const Dot = ({ active }: IDot) => {
-	const { mode } = useSlice("appSettings");
-	const color = active ? "#1da3dd" : mode === "dark" ? "white" : "black";
-	return (
-		<Entypo name="dot-single" style={{ margin: -6 }} size={24} color={color} />
-	);
-};
-
-export default function index() {
-	const { mode } = useSlice("appSettings");
+export default function Main() {
 	const dispatch = useDispatch();
-	const router = useRouter();
-
-	const bg = mode === "light" ? "bg-gray-200" : "bg-slate-800";
-	const text = mode === "light" ? "text-black" : "text-white";
+	const { mode } = useSlice("appSettings");
 
 	useLayoutEffect(() => {
 		dispatch(fetchAppSettings());
-	}, []);
-
+	}, [dispatch]);
 	return (
-		<>
-			<SafeAreaView className={`flex-1 ${bg} transition-all duration-700;`}>
-				<View className="flex-1">
-					<View className="self-end p-4">
-						<Ionicons
-							name={mode === "dark" ? "moon" : "sunny"}
-							size={24}
-							color="#1da3dd"
-							onPress={() => dispatch(toggleColorMode())}
-						/>
-					</View>
-					<View className="w-full h-[500]  justify-start pt-16 items-center">
-						<Image className="w-[150] h-[150]" source={logo} alt="logo" />
-						<Text className={`${text} text-2xl font-bold mt-4 mb-1`}>
-							Sandesh
-						</Text>
-						<Text className={`text-gray-500`}>
-							The world's fastest messaging app.
-						</Text>
-						<Text className={`text-gray-500`}>It is free and secure.</Text>
-						<View className="flex-row mt-4">
-							<Dot active />
-							<Dot />
-							<Dot />
-							<Dot />
-							<Dot />
-							<Dot />
-						</View>
-					</View>
-				</View>
+		<SafeAreaView style={[styles.container, theme.bg]}>
+			<View style={styles.icon}>
+				<Ionicons
+					name={mode === "dark" ? "moon" : "sunny"}
+					size={30}
+					color={mode === "dark" ? theme.primary.color : theme.secondary.color}
+					onPress={() => dispatch(toggleColorMode())}
+				/>
+			</View>
 
-				<View className="justify-self-end my-16 px-8">
-					<Button onPress={() => router.push("/register")}>
-						Start Messaging
-					</Button>
+			<View style={styles.logoContainer}>
+				<Image
+					style={styles.image}
+					source={require("../assets/adaptive-icon.png")}
+					alt="logo"
+				/>
+				<Text style={[theme.text, theme.headingLarge]}>Sandesh</Text>
+				<Text style={theme.dimmedText}>The world's fastest messaging app.</Text>
+				<Text style={theme.dimmedText}>It is free and secure.</Text>
+				<View style={styles.dots}>
+					<Dot active />
+					<Dot />
+					<Dot />
+					<Dot />
+					<Dot />
+					<Dot />
 				</View>
-			</SafeAreaView>
-			<StatusBar style={mode === "dark" ? "light" : "dark"} />
-		</>
+			</View>
+			<View style={styles.button}>
+				<GradientButton onPress={() => router.push("/register")}>
+					Start Messaging
+				</GradientButton>
+			</View>
+		</SafeAreaView>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: { flex: 1, padding: 2, alignItems: "center" },
+	logoContainer: {
+		marginTop: 10,
+		marginBottom: 100,
+		width: "80%",
+		height: "60%",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	image: { width: "65%", height: "60%" },
+	button: { width: "80%" },
+	icon: { padding: 20, alignSelf: "flex-end" },
+	dots: { flexDirection: "row", padding: 10, gap: 2 },
+});
