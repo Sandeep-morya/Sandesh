@@ -11,16 +11,18 @@ import { Ionicons } from "@expo/vector-icons";
 import theme from "../src/globalStyle";
 import GradientButton from "../src/components/common/GradientButton";
 
-import { router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import Dot from "../src/components/common/Dot";
 
 export default function Main() {
 	const dispatch = useDispatch();
+	const auth = true;
 	const { mode } = useSlice("appSettings");
 
 	useLayoutEffect(() => {
 		dispatch(fetchAppSettings());
 	}, [dispatch]);
+
 	return (
 		<SafeAreaView style={[styles.container, theme.bg]}>
 			<View style={styles.icon}>
@@ -51,7 +53,7 @@ export default function Main() {
 				</View>
 			</View>
 			<View style={styles.button}>
-				<GradientButton onPress={() => router.push("/register")}>
+				<GradientButton onPress={() => router.push("/confirm")}>
 					Start Messaging
 				</GradientButton>
 			</View>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	image: { width: "65%", height: "60%" },
+	image: { width: "60%", height: "50%" },
 	button: { width: "80%" },
 	icon: { padding: 20, alignSelf: "flex-end" },
 	dots: { flexDirection: "row", padding: 10, gap: 2 },

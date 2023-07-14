@@ -7,3 +7,24 @@ export interface IAppSettigs {
 	theme: Theme;
 	language: Language;
 }
+
+export interface ILoginForm {
+	email: string;
+	password: string;
+}
+
+export interface IRegistranstionForm extends ILoginForm {
+	name?: String;
+}
+
+export interface IUser {
+	_id: string;
+	name: string;
+	email: string;
+	username: string;
+	mobile: string;
+	bio: string;
+	verified: boolean;
+	createdAt: string;
+	__typename: string;
+}

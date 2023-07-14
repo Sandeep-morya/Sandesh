@@ -7,9 +7,17 @@ const theme = StyleSheet.create({
 	primary: { color: "#FF269E" },
 	secondary: { color: "#23CDEE" },
 	headingLarge: {
-		fontSize: 40,
+		fontSize: 30,
 		fontFamily: "open-sans-bold",
 		letterSpacing: 1,
+		marginBottom: 10,
+	},
+	headingMedium: {
+		fontSize: 20,
+		fontFamily: "open-sans-semi-bold",
+		letterSpacing: 1,
+		marginBottom: 10,
+		fontWeight: "700",
 	},
 	dimmedText: {
 		color: "rgba(255,255,255,0.5)",

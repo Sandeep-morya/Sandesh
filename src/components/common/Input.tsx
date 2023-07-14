@@ -1,24 +1,35 @@
 ﻿import { View, Text, TextInput, StyleSheet } from "react-native";
-import React from "react";
 import theme from "../../globalStyle";
-import { AntDesign } from "@expo/vector-icons";
+import { useState } from "react";
+import { Feather } from "@expo/vector-icons";
 
 interface IProps {
 	value: string;
 	onChangeText: (e: string) => void;
 	placeholder: string;
 	icon?: any;
+	secure?: boolean;
 }
 
 export default function Input(props: IProps) {
+	const [show, setShow] = useState(props.secure);
 	return (
 		<View style={styles.wrapper}>
-			<AntDesign name={props.icon} size={20} color={theme.dimmedText.color} />
+			<Feather name={props.icon} size={20} color={theme.dimmedText.color} />
 			<TextInput
 				style={styles.textInput}
 				placeholderTextColor={"#fff3"}
 				{...props}
+				secureTextEntry={show}
 			/>
+			{props.secure && (
+				<Feather
+					name={show ? "eye" : "eye-off"}
+					size={20}
+					color={theme.dimmedText.color}
+					onPress={() => setShow((e) => !e)}
+				/>
+			)}
 		</View>
 	);
 }

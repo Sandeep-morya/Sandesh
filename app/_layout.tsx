@@ -5,8 +5,14 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useLayoutEffect } from "react";
 import theme from "../src/globalStyle";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 SplashScreen.preventAutoHideAsync();
+
+const client = new ApolloClient({
+	uri: "http:192.168.1.4:4000/graphql",
+	cache: new InMemoryCache(),
+});
 
 export default () => {
 	const [fontsLoaded] = useFonts({
@@ -31,18 +37,23 @@ export default () => {
 	}
 
 	return (
-		<Provider store={store}>
-			<Stack
-				screenOptions={{
-					statusBarColor: theme.bg.backgroundColor,
-					statusBarStyle: "light",
-				}}>
-				<Stack.Screen name="index" options={{ headerShown: false }} />
-				<Stack.Screen name="register" options={{ headerShown: false }} />
-				<Stack.Screen name="password_reset" options={{ headerShown: false }} />
-				<Stack.Screen name="confirm" options={{ headerShown: false }} />
-				<Stack.Screen name="setup" options={{ headerShown: false }} />
-			</Stack>
-		</Provider>
+		<ApolloProvider client={client}>
+			<Provider store={store}>
+				<Stack
+					screenOptions={{
+						statusBarColor: theme.bg.backgroundColor,
+						statusBarStyle: "light",
+					}}>
+					<Stack.Screen name="index" options={{ headerShown: false }} />
+					<Stack.Screen name="register" options={{ headerShown: false }} />
+					<Stack.Screen
+						name="password_reset"
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen name="confirm" options={{ headerShown: false }} />
+					<Stack.Screen name="setup" options={{ headerShown: false }} />
+				</Stack>
+			</Provider>
+		</ApolloProvider>
 	);
 };

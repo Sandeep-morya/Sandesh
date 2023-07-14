@@ -1,12 +1,28 @@
 ﻿import { View, Text, Image, StyleSheet } from "react-native";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import theme from "../src/globalStyle";
 import Input from "../src/components/common/Input";
 import GradientButton from "../src/components/common/GradientButton";
 import Button from "../src/components/common/Button";
 import { router } from "expo-router";
+import { IRegistranstionForm, IUser } from "../types";
+import { useQuery, gql, useMutation } from "@apollo/client";
 
+const CREATE_NEW_ACCOUNT = gql`
+	mutation NewAccount($name: String!, $email: String!, $password: String!) {
+		createAccount(name: $name, email: $email, password: $password) {
+			_id
+			name
+			email
+			verified
+			username
+			mobile
+			bio
+			createdAt
+		}
+	}
+`;
 type FormType = "login" | "register";
 
 export default function Register() {
@@ -14,6 +30,33 @@ export default function Register() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const [createAccount, { loading }] = useMutation(CREATE_NEW_ACCOUNT);
+
+	const handleAuthentication = useCallback(
+		async (formData: IRegistranstionForm) => {
+			if (Object.values(formData).every((e) => e != "")) {
+				try {
+					const { data } = await createAccount({ variables: formData });
+					const user: IUser = data.createAccount;
+					router.push({
+						pathname: form === "register" ? "/confirm" : "/home",
+						params: {
+							id: user._id,
+							name: user.name,
+							loginId: user.email,
+							verfied: user.verified,
+						},
+					});
+				} catch (error) {
+					alert(error?.message);
+				}
+			} else {
+				alert("Fill all the details to continue");
+			}
+		},
+		[form],
+	);
 
 	return (
 		<SafeAreaView style={[styles.container, theme.bg]}>
@@ -43,12 +86,12 @@ export default function Register() {
 					value={password}
 					onChangeText={setPassword}
 					icon="key"
+					secure
 				/>
 				<GradientButton
 					variant="outline"
-					onPress={() =>
-						router.push(form === "register" ? "/confirm" : "/home")
-					}>
+					isLoading={loading}
+					onPress={() => handleAuthentication({ name, email, password })}>
 					{form === "login" ? "Sign In" : "Register"}
 				</GradientButton>
 

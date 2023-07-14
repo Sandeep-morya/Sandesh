@@ -4,11 +4,15 @@ import theme from "../../globalStyle";
 
 interface IProps extends PropsWithChildren {
 	onPress: () => void;
+	isDisabled?: boolean;
 }
 
-export default function Button({ children, onPress }: IProps) {
+export default function Button({ children, onPress, isDisabled }: IProps) {
 	return (
-		<TouchableOpacity onPress={onPress} style={styles.wrapper}>
+		<TouchableOpacity
+			disabled={isDisabled}
+			onPress={onPress}
+			style={styles.wrapper}>
 			<Text style={styles.buttonText}>{children}</Text>
 		</TouchableOpacity>
 	);
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	buttonText: {
-		...theme.text,
 		fontSize: 15,
+		...theme.text,
 	},
 });
