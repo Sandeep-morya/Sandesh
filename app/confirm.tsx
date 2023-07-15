@@ -73,7 +73,7 @@ export default function Confirm() {
 	);
 
 	useEffect(() => {
-		throttle(handleSendOTP, 59000);
+		handleSendOTP();
 	}, [handleSendOTP]);
 
 	return (

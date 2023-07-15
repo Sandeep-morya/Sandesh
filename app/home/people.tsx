@@ -1,10 +1,10 @@
 ﻿import { View, Text } from "react-native";
 import React from "react";
 
-export default function Messages() {
+export default function People() {
 	return (
 		<View>
-			<Text>Messages</Text>
+			<Text>People</Text>
 		</View>
 	);
 }

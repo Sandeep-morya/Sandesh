@@ -52,6 +52,7 @@ export default () => {
 					/>
 					<Stack.Screen name="confirm" options={{ headerShown: false }} />
 					<Stack.Screen name="setup" options={{ headerShown: false }} />
+					<Stack.Screen name="home" options={{ headerShown: false }} />
 				</Stack>
 			</Provider>
 		</ApolloProvider>

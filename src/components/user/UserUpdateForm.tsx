@@ -44,7 +44,7 @@ export default function UserUpdateForm({ token }: IProps) {
 				});
 				console.log(data?.updateUserDetails);
 				dispatch(updateUserInfo(formInput));
-				router.push("/home");
+				router.replace("/home");
 			} catch (error) {
 				alert(error?.message);
 			}
