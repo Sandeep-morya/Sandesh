@@ -12,13 +12,8 @@ import { validateSeconds } from "../src/utils/numberValidation";
 import GradientButton from "../src/components/common/GradientButton";
 import { gql, useMutation } from "@apollo/client";
 import useThrottle from "../src/hooks/useThrottle";
-
-const user = {
-	id: "64b113621d1c5b3fd4332ba4",
-	loginId: "saabmaurya@gmail.com",
-	name: "Sandeep",
-	verified: false,
-};
+import { useDispatch } from "../src/utils/redux";
+import { addToken } from "../src/toolkit/slices/userSlice";
 
 const SEND_OTP = gql`
 	mutation SendOTP($loginId: String!) {
@@ -32,8 +27,9 @@ const OTP_VERIFICATION = gql`
 `;
 
 export default function Confirm() {
-	const { id, name, loginId, verified } = user;
+	const { id, name, loginId, verified } = useGlobalSearchParams();
 	const throttle = useThrottle();
+	const dispatch = useDispatch();
 
 	const [sendOTP, { loading }] = useMutation(SEND_OTP);
 	const [optVerification, { loading: isLoading }] =
@@ -61,9 +57,12 @@ export default function Confirm() {
 				const { data } = await optVerification({
 					variables: { id, loginId, code },
 				});
+				const token = data.optVerification;
+				// :: Adding Token in Store ::
+				dispatch(addToken(token));
 				router.push({
 					pathname: "/setup",
-					params: { token: data.optVerification },
+					params: { id, token },
 				});
 			} catch (error) {
 				alert(error.message);
@@ -72,9 +71,9 @@ export default function Confirm() {
 		[id, loginId],
 	);
 
-	// useEffect(() => {
-	// 	throttle(handleSendOTP, 59000);
-	// }, [handleSendOTP]);
+	useEffect(() => {
+		throttle(handleSendOTP, 59000);
+	}, [handleSendOTP]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -94,6 +93,7 @@ export default function Confirm() {
 			/>
 
 			<View style={styles.hintTextsWrapper}>
+				<Text style={[theme.headingMedium, theme.text]}>Hi! {name}</Text>
 				<Text style={[theme.headingMedium, theme.text]}>Check Your Email</Text>
 				<Text style={[theme.dimmedText, { textAlign: "center" }]}>
 					Enter the OTP we have sent to your email

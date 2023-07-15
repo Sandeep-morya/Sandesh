@@ -16,13 +16,19 @@ const CREATE_NEW_ACCOUNT = gql`
 			name
 			email
 			verified
-			username
-			mobile
-			bio
-			createdAt
 		}
 	}
 `;
+
+const LOGIN = gql`
+	mutation Login($email: String!, $password: String!) {
+		login(email: $email, password: $password) {
+			id
+			token
+		}
+	}
+`;
+
 type FormType = "login" | "register";
 
 export default function Register() {
@@ -32,22 +38,31 @@ export default function Register() {
 	const [password, setPassword] = useState("");
 
 	const [createAccount, { loading }] = useMutation(CREATE_NEW_ACCOUNT);
+	const [login, { loading: isLoading }] = useMutation(LOGIN);
 
 	const handleAuthentication = useCallback(
 		async (formData: IRegistranstionForm) => {
 			if (Object.values(formData).every((e) => e != "")) {
 				try {
-					const { data } = await createAccount({ variables: formData });
-					const user: IUser = data.createAccount;
-					router.push({
-						pathname: form === "register" ? "/confirm" : "/home",
-						params: {
-							id: user._id,
-							name: user.name,
-							loginId: user.email,
-							verfied: user.verified,
-						},
-					});
+					if (form === "register") {
+						const { data } = await createAccount({ variables: formData });
+						const user: IUser = data.createAccount;
+						router.push({
+							pathname: form === "register" ? "/confirm" : "/home",
+							params: {
+								id: user._id,
+								name: user.name,
+								loginId: user.email,
+								verfied: user.verified,
+							},
+						});
+					} else {
+						const { data } = await login({
+							variables: { email: formData.email, password: formData.password },
+						});
+						const { id, token } = data.login;
+						router.push({ pathname: "/setup", params: { id, token } });
+					}
 				} catch (error) {
 					alert(error?.message);
 				}
@@ -90,7 +105,7 @@ export default function Register() {
 				/>
 				<GradientButton
 					variant="outline"
-					isLoading={loading}
+					isLoading={loading || isLoading}
 					onPress={() => handleAuthentication({ name, email, password })}>
 					{form === "login" ? "Sign In" : "Register"}
 				</GradientButton>

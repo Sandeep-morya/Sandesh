@@ -22,9 +22,19 @@ export interface IUser {
 	name: string;
 	email: string;
 	username: string;
+	gender: string;
+	image: string;
 	mobile: string;
 	bio: string;
 	verified: boolean;
 	createdAt: string;
 	__typename: string;
+}
+
+export interface IUserSlice {
+	loading: boolean;
+	error: boolean;
+	token: String;
+	info: IUser | null;
+	// settings:IUserSetting
 }
