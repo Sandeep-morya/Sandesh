@@ -1,14 +1,15 @@
 ﻿import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { useEffect, useLayoutEffect, useCallback } from "react";
 import { router, useGlobalSearchParams } from "expo-router";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "../src/utils/redux";
 import { addUserInfo } from "../src/toolkit/slices/userSlice";
 import theme from "../src/globalStyle";
 import UpdateProfilePicture from "../src/components/user/UpdateProfilePicture";
-import GradientButton from "../src/components/common/GradientButton";
+
 import Input from "../src/components/common/Input";
 import UserUpdateForm from "../src/components/user/UserUpdateForm";
+import { ScrollView } from "react-native-gesture-handler";
 
 const FIND_USER = gql`
 	query FindUser($query: UserQuery) {
@@ -43,14 +44,16 @@ export default function Setup() {
 		}
 	}, [data]);
 
+	console.log({ info });
+
 	// useLayoutEffect(() => {
 	// 	if (info && info.username !== "") {
 	// 		router.replace("/home");
 	// 	}
 	// }, [info]);
-	const handleUserNavigate = useCallback(() => {}, []);
+	const handleSubmitForm = useCallback(() => {}, []);
 
-	if (loading) {
+	if (loading || !info) {
 		return <ActivityIndicator size={"large"} color="red" />;
 	}
 	if (error) {
@@ -58,17 +61,18 @@ export default function Setup() {
 	}
 
 	return (
-		<View style={styles.container}>
-			<UpdateProfilePicture image={info.image} />
-			<View style={{ alignItems: "center" }}>
-				<Text style={[theme.headingLarge, theme.text]}>Hey! {info.name}</Text>
-				<Text style={[theme.text]}>Please fill this form to continue</Text>
+		<ScrollView style={theme.bg}>
+			<View style={styles.container}>
+				<UpdateProfilePicture token={token as string} />
+				<View style={{ alignItems: "center" }}>
+					<Text style={[theme.headingLarge, theme.text]}>
+						Hey! {info?.name}
+					</Text>
+					<Text style={[theme.text]}>Please fill this form to continue</Text>
+				</View>
+				<UserUpdateForm token={token as string} />
 			</View>
-			<UserUpdateForm {...info} />
-
-			{/* <UpdateUsername username={info.username} /> */}
-			<GradientButton onPress={handleUserNavigate}>Submit Form</GradientButton>
-		</View>
+		</ScrollView>
 	);
 }
 

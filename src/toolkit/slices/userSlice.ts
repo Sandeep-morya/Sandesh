@@ -31,6 +31,10 @@ const userSlice = createSlice({
 			state.info = action.payload;
 			storeData(KEY, state);
 		},
+		updateUserInfo(state, action: PayloadAction<any>) {
+			state.info = { ...state.info, ...action.payload };
+			storeData(KEY, state);
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -47,5 +51,5 @@ const userSlice = createSlice({
 });
 
 export { fetchUserData };
-export const { addToken, addUserInfo } = userSlice.actions;
+export const { addToken, addUserInfo, updateUserInfo } = userSlice.actions;
 export default userSlice.reducer;

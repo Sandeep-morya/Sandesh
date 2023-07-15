@@ -1,20 +1,32 @@
 ﻿import { View, Text, Image, StyleSheet, ActivityIndicator } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { IUser } from "../../../types";
 import theme from "../../globalStyle";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { gql, useMutation } from "@apollo/client";
+import { useSelector } from "../../utils/redux";
 interface IProps {
-	image: string;
+	token: string;
 }
 const loading = false;
 
-export default function UpdateProfilePicture({ image }: IProps) {
+const UPDATE_USER = gql`
+	mutation UpdateUserDetails($form: FormInput) {
+		updateUserDetails(form: $form)
+	}
+`;
+export default function UpdateProfilePicture({ token }: IProps) {
+	const { info } = useSelector((store) => store.user);
+	const [updateUser, { loading }] = useMutation(UPDATE_USER);
+	const [profilePicture, setProfilePicture] = useState(
+		info?.image || require("../../../assets/no-user.jpg"),
+	);
 	return (
 		<View style={styles.profilePictureWrapper}>
 			<Image
 				style={styles.profilePicture}
-				source={require("../../../assets/no-user.jpg")}
+				source={profilePicture}
 				alt="user-profile-picture"
 			/>
 			{loading && (
