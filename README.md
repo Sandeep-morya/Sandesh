@@ -66,15 +66,15 @@ The following tools were used in this project:
 
 ## :white_check_mark: ScreenShots
 
- <img  alt="ScreenShot" src="/screenshots/0.png">
- <img alt="ScreenShot" src="/screenshots/1.png">
- <img alt="ScreenShot" src="/screenshots/2.png">
- <img alt="ScreenShot" src="/screenshots/3.png">
- <img alt="ScreenShot" src="/screenshots/4.png">
- <img alt="ScreenShot" src="/screenshots/5.png">
- <img alt="ScreenShot" src="/screenshots/6.png">
- <img alt="ScreenShot" src="/screenshots/7.png">
- <img alt="ScreenShot" src="/screenshots/8.png">
+ <img width="300"   alt="ScreenShot" src="/screenshots/0.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/1.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/2.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/3.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/4.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/5.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/6.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/7.png">
+ <img width="300"  alt="ScreenShot" src="/screenshots/8.png">
 
 ## :checkered_flag: Starting
 
