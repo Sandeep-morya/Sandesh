@@ -7,7 +7,7 @@ export interface IAppSettigs {
 	theme: Theme;
 	language: Language;
 }
-
+export type FormType = "login" | "register";
 export interface ILoginForm {
 	email: string;
 	password: string;

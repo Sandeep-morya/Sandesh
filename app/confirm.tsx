@@ -43,6 +43,7 @@ export default function Confirm() {
 	}
 
 	const handleSendOTP = useCallback(async () => {
+		console.log("otp-sent");
 		try {
 			const message = await sendOTP({ variables: { loginId } });
 			console.log(message);

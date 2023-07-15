@@ -1,7 +1,7 @@
 ﻿import { View, Text, StyleSheet, Image } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch, useSlice } from "../src/utils/redux";
+import { useDispatch, useSelector, useSlice } from "../src/utils/redux";
 import {
 	fetchAppSettings,
 	toggleColorMode,
@@ -13,13 +13,32 @@ import GradientButton from "../src/components/common/GradientButton";
 
 import { Redirect, router } from "expo-router";
 import Dot from "../src/components/common/Dot";
+import { fetchUserData } from "../src/toolkit/slices/userSlice";
 
 export default function Main() {
 	const dispatch = useDispatch();
-	const auth = true;
-	const { mode } = useSlice("appSettings");
+	const { mode } = useSelector((store) => store.appSettings);
+	const { token, info } = useSelector((store) => store.user);
+
+	const handleUserNavigate = useCallback(() => {
+		console.log(info);
+		if (token === "" || info === null) {
+			router.replace("/register");
+		} else if (info != null && info.username) {
+			router.replace("/home");
+		} else {
+			router.replace({
+				pathname: "/setup",
+				params: {
+					id: info._id,
+					token,
+				},
+			});
+		}
+	}, [token, info]);
 
 	useLayoutEffect(() => {
+		dispatch(fetchUserData());
 		dispatch(fetchAppSettings());
 	}, [dispatch]);
 
@@ -53,7 +72,7 @@ export default function Main() {
 				</View>
 			</View>
 			<View style={styles.button}>
-				<GradientButton onPress={() => router.push("/confirm")}>
+				<GradientButton onPress={handleUserNavigate}>
 					Start Messaging
 				</GradientButton>
 			</View>

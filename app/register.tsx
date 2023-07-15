@@ -6,8 +6,11 @@ import Input from "../src/components/common/Input";
 import GradientButton from "../src/components/common/GradientButton";
 import Button from "../src/components/common/Button";
 import { router } from "expo-router";
-import { IRegistranstionForm, IUser } from "../types";
+import { FormType, IRegistranstionForm, IUser } from "../types";
 import { useQuery, gql, useMutation } from "@apollo/client";
+import formValidation from "../src/utils/formValidation";
+import { useDispatch } from "../src/utils/redux";
+import { addToken } from "../src/toolkit/slices/userSlice";
 
 const CREATE_NEW_ACCOUNT = gql`
 	mutation NewAccount($name: String!, $email: String!, $password: String!) {
@@ -22,14 +25,12 @@ const CREATE_NEW_ACCOUNT = gql`
 
 const LOGIN = gql`
 	mutation Login($email: String!, $password: String!) {
-		login(email: $email, password: $password) {
+		loginAccount(email: $email, password: $password) {
 			id
 			token
 		}
 	}
 `;
-
-type FormType = "login" | "register";
 
 export default function Register() {
 	const [form, setForm] = useState<FormType>("login");
@@ -37,12 +38,14 @@ export default function Register() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const dispatch = useDispatch();
+
 	const [createAccount, { loading }] = useMutation(CREATE_NEW_ACCOUNT);
 	const [login, { loading: isLoading }] = useMutation(LOGIN);
 
 	const handleAuthentication = useCallback(
 		async (formData: IRegistranstionForm) => {
-			if (Object.values(formData).every((e) => e != "")) {
+			if (formValidation(form, formData)) {
 				try {
 					if (form === "register") {
 						const { data } = await createAccount({ variables: formData });
@@ -60,7 +63,8 @@ export default function Register() {
 						const { data } = await login({
 							variables: { email: formData.email, password: formData.password },
 						});
-						const { id, token } = data.login;
+						const { id, token } = data.loginAccount;
+						dispatch(addToken(token));
 						router.push({ pathname: "/setup", params: { id, token } });
 					}
 				} catch (error) {
