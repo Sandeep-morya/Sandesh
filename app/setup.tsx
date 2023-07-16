@@ -46,11 +46,11 @@ export default function Setup() {
 
 	console.log({ info });
 
-	// useLayoutEffect(() => {
-	// 	if (info && info.username !== "") {
-	// 		router.replace("/home");
-	// 	}
-	// }, [info]);
+	useLayoutEffect(() => {
+		if (info && info.username !== "") {
+			router.replace("/home");
+		}
+	}, [info]);
 	const handleSubmitForm = useCallback(() => {}, []);
 
 	if (loading || !info) {

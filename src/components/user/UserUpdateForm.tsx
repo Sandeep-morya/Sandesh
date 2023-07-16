@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const UPDATE_USER = gql`
-	mutation UpdateUserDetails($form: FormInput) {
+	mutation UpdateUserDetails($form: FormInput!) {
 		updateUserDetails(form: $form)
 	}
 `;
