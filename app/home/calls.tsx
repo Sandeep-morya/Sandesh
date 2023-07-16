@@ -1,10 +1,11 @@
-﻿import { View, Text } from "react-native";
+﻿import { View, Text, ScrollView } from "react-native";
 import React from "react";
+import theme from "../../src/globalStyle";
 
 export default function Calls() {
 	return (
-		<View>
+		<ScrollView style={theme.bg} contentContainerStyle={{ padding: 8 }}>
 			<Text>Calls</Text>
-		</View>
+		</ScrollView>
 	);
 }

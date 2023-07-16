@@ -66,15 +66,16 @@ The following tools were used in this project:
 
 ## :white_check_mark: ScreenShots
 
- <img width="300"   alt="ScreenShot" src="/screenshots/0.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/1.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/2.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/3.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/4.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/5.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/6.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/7.png">
- <img width="300"  alt="ScreenShot" src="/screenshots/8.png">
+ <img width="200"   alt="ScreenShot" src="/screenshots/0.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/1.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/2.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/3.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/4.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/5.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/6.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/7.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/8.png">
+ <img width="200"  alt="ScreenShot" src="/screenshots/9.png">
 
 ## :checkered_flag: Starting
 
@@ -91,7 +92,7 @@ $ yarn
 # Run the project
 $ yarn start
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:2000>
 ```
 
 ## :memo: License

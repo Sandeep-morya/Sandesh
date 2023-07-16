@@ -9,12 +9,13 @@ interface IProps {
 	placeholder: string;
 	icon?: any;
 	secure?: boolean;
+	borderRadius?: any;
 }
 
 export default function Input(props: IProps) {
 	const [show, setShow] = useState(props.secure);
 	return (
-		<View style={styles.wrapper}>
+		<View style={[styles.wrapper, { borderRadius: props.borderRadius || 5 }]}>
 			<Feather name={props.icon} size={20} color={theme.dimmedText.color} />
 			<TextInput
 				style={styles.textInput}
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderWidth: 1,
 		borderColor: "#fff3",
-		borderRadius: 5,
 		flexDirection: "row",
 		alignItems: "center",
 	},

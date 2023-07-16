@@ -19,7 +19,6 @@ export default () => {
 		"open-sans": require("../assets/fonts/OpenSans-Regular.ttf"),
 		"open-sans-italic": require("../assets/fonts/OpenSans-Italic.ttf"),
 		"open-sans-light": require("../assets/fonts/OpenSans-Light.ttf"),
-		"open-sans-medium": require("../assets/fonts/OpenSans-Medium.ttf"),
 		"open-sans-semi-bold": require("../assets/fonts/OpenSans-SemiBold.ttf"),
 		"open-sans-bold": require("../assets/fonts/OpenSans-Bold.ttf"),
 	});
