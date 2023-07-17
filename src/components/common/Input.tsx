@@ -10,12 +10,32 @@ interface IProps {
 	icon?: any;
 	secure?: boolean;
 	borderRadius?: any;
+	height?: any;
 }
 
 export default function Input(props: IProps) {
 	const [show, setShow] = useState(props.secure);
+	const styles = StyleSheet.create({
+		wrapper: {
+			width: "100%",
+			height: props.height || 60,
+			padding: 10,
+			borderWidth: 1,
+			borderColor: "#fff3",
+			flexDirection: "row",
+			alignItems: "center",
+			borderRadius: props.borderRadius || 5,
+		},
+		textInput: {
+			...theme.text,
+			fontSize: 15,
+			marginLeft: 10,
+			flex: 1,
+		},
+	});
+
 	return (
-		<View style={[styles.wrapper, { borderRadius: props.borderRadius || 5 }]}>
+		<View style={styles.wrapper}>
 			<Feather name={props.icon} size={20} color={theme.dimmedText.color} />
 			<TextInput
 				style={styles.textInput}
@@ -34,21 +54,3 @@ export default function Input(props: IProps) {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	wrapper: {
-		width: "100%",
-		height: 60,
-		padding: 10,
-		borderWidth: 1,
-		borderColor: "#fff3",
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	textInput: {
-		...theme.text,
-		fontSize: 15,
-		marginLeft: 10,
-		flex: 1,
-	},
-});

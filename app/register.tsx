@@ -65,7 +65,7 @@ export default function Register() {
 						});
 						const { id, token } = data.loginAccount;
 						dispatch(addToken(token));
-						router.push({ pathname: "/setup", params: { id, token } });
+						router.replace({ pathname: "/setup", params: { id, token } });
 					}
 				} catch (error) {
 					alert(error?.message);

@@ -17,7 +17,6 @@ const theme = StyleSheet.create({
 		fontFamily: "open-sans-semi-bold",
 		letterSpacing: 1,
 		marginBottom: 10,
-		fontWeight: "700",
 	},
 	dimmedText: {
 		color: "rgba(255,255,255,0.5)",

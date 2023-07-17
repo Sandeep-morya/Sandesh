@@ -1,5 +1,5 @@
 <div align="center" id="top">
-  <img src="./.github/app.gif" alt="Sandesh" />
+  <img width="50" src="/assets/icon.png" alt="Sandesh" />
 
 &#xa0;
 
@@ -50,9 +50,9 @@ Sandesh is an instant-messaging and audio/video calling app. Since it is build o
 
 ## :sparkles: Features
 
-:heavy_check_mark: Feature 1; Chatting with friends and strangers\
-:heavy_check_mark: Feature 2; Unlimited Audio and video calls\
-:heavy_check_mark: Feature 3; Files sharing
+:heavy_check_mark: Feature 1- Chatting with friends and strangers\
+:heavy_check_mark: Feature 2- Unlimited Audio and video calls\
+:heavy_check_mark: Feature 3- Files sharing
 
 ## :rocket: Technologies
 
@@ -99,7 +99,7 @@ $ yarn start
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-Made with :heart: by <a href="https://github.com/Sandeep-morya" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/Sandeep-morya" target="_blank">Sandeep Morya</a>
 
 &#xa0;
 

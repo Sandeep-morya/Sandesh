@@ -51,17 +51,5 @@ export default () => (
 				title: "People",
 			}}
 		/>
-		<Tabs.Screen
-			name="chat/[id]"
-			options={{
-				href: null,
-			}}
-		/>
-		<Tabs.Screen
-			name="stories"
-			options={{
-				href: null,
-			}}
-		/>
 	</Tabs>
 );

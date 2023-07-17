@@ -10,7 +10,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 SplashScreen.preventAutoHideAsync();
 
 const client = new ApolloClient({
-	uri: "http:192.168.1.4:4000/graphql",
+	uri: "http:192.168.1.2:4000/graphql",
 	cache: new InMemoryCache(),
 });
 
