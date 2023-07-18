@@ -3,25 +3,25 @@
 
 &#xa0;
 
-  <!-- <a href="https://sandesh.netlify.app">Demo</a> -->
+  <!-- <a href="https://Sandesh.netlify.app">Demo</a> -->
 </div>
 
 <h1 align="center">Sandesh</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/Sandeep-morya/sandesh?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/Sandeep-morya/Sandesh?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/Sandeep-morya/sandesh?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/Sandeep-morya/Sandesh?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/sandesh?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/Sandesh?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/sandesh?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/Sandesh?color=56BEB8">
 
-  <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/sandesh?color=56BEB8" />
+  <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/Sandesh?color=56BEB8" />
 
-  <img alt="Github forks" src="https://img.shields.io/github/forks/Sandeep-morya/sandesh?color=56BEB8" />
+  <img alt="Github forks" src="https://img.shields.io/github/forks/Sandeep-morya/Sandesh?color=56BEB8" />
 
- <img alt="Github stars" src="https://img.shields.io/github/stars/Sandeep-morya/sandesh?color=56BEB8" />
+ <img alt="Github stars" src="https://img.shields.io/github/stars/Sandeep-morya/Sandesh?color=56BEB8" />
 </p>
 
 Status
@@ -81,10 +81,10 @@ The following tools were used in this project:
 
 ```bash
 # Clone this project
-$ git clone https://github.com/Sandeep-morya/sandesh
+$ git clone https://github.com/Sandeep-morya/Sandesh
 
 # Access
-$ cd sandesh
+$ cd Sandesh
 
 # Install dependencies
 $ yarn

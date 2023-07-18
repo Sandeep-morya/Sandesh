@@ -4,6 +4,14 @@ import HeaderRight from "../../src/components/home/HeaderRight";
 import theme from "../../src/globalStyle";
 import Logo from "../../src/components/common/Logo";
 import TabBarIcon from "../../src/components/home/TabBarIcon";
+import * as Notifications from "expo-notifications";
+Notifications.setNotificationHandler({
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: true,
+		shouldSetBadge: true,
+	}),
+});
 export default () => (
 	<Tabs
 		screenOptions={{
