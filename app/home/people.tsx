@@ -1,10 +1,21 @@
 ﻿import { View, Text, ScrollView, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import theme from "../../src/globalStyle";
 import Input from "../../src/components/common/Input";
+import useSocket from "../../src/hooks/useSocket";
+import Button from "../../src/components/common/Button";
 
 export default function People() {
+	const socket = useSocket();
 	const [searchText, setSearchText] = useState("");
+	const sendInstantMessage = useCallback(
+		(message: string) => {
+			if (socket) {
+				socket.emit("client:send-message", message);
+			}
+		},
+		[socket],
+	);
 	return (
 		<ScrollView
 			style={{ backgroundColor: "#100020" }}
@@ -18,6 +29,7 @@ export default function People() {
 				height={55}
 				icon="search"
 			/>
+			<Button onPress={() => sendInstantMessage(searchText)}>Send</Button>
 		</ScrollView>
 	);
 }
