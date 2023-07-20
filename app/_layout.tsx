@@ -6,15 +6,17 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useLayoutEffect } from "react";
 import theme from "../src/globalStyle";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { usePathname } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
 
 const client = new ApolloClient({
-	uri: "http:192.168.1.2:4000/graphql",
+	uri: "http:192.168.1.4:4000/graphql",
 	cache: new InMemoryCache(),
 });
 
 export default () => {
+	const pathname = usePathname();
 	const [fontsLoaded] = useFonts({
 		"open-sans": require("../assets/fonts/OpenSans-Regular.ttf"),
 		"open-sans-italic": require("../assets/fonts/OpenSans-Italic.ttf"),
@@ -40,7 +42,9 @@ export default () => {
 			<Provider store={store}>
 				<Stack
 					screenOptions={{
-						statusBarColor: theme.bg.backgroundColor,
+						statusBarColor: pathname.includes("chatroom")
+							? "red"
+							: theme.bg.backgroundColor,
 						statusBarStyle: "light",
 					}}>
 					<Stack.Screen name="index" options={{ headerShown: false }} />

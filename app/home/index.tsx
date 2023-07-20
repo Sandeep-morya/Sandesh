@@ -14,6 +14,7 @@ import Threads from "../../src/components/chat/Threads";
 import GradientButton from "../../src/components/common/GradientButton";
 import Button from "../../src/components/common/Button";
 import EmptyMessageComponent from "../../src/components/chat/EmptyMessageComponent";
+
 const messages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export default function Messages() {
 	const { info } = useSelector((store) => store.user);
@@ -21,7 +22,7 @@ export default function Messages() {
 	const [searchText, setSearchText] = useState("");
 	return (
 		<ScrollView style={theme.bg} contentContainerStyle={{ padding: 10 }}>
-			{false && (
+			{true && (
 				<View style={styles.searchContainer}>
 					<GradientInput
 						value={searchText}
@@ -30,8 +31,8 @@ export default function Messages() {
 					/>
 				</View>
 			)}
-			<EmptyMessageComponent />
-			{false && (
+			{false && <EmptyMessageComponent />}
+			{true && (
 				<View style={styles.threadsContainer}>
 					{messages.map((e) => (
 						<Thread key={e} room={e} />

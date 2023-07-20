@@ -31,6 +31,7 @@ export default function Button({
 			paddingVertical: 10,
 			paddingHorizontal: 20,
 			borderRadius: 5,
+			alignSelf: "center",
 		},
 
 		icon: {
@@ -50,7 +51,7 @@ export default function Button({
 					style={styles.icon}
 				/>
 			)}
-			<Text style={styles.buttonText}>Start New Chat</Text>
+			<Text style={styles.buttonText}>{children}</Text>
 		</TouchableOpacity>
 	);
 }

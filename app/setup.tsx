@@ -54,7 +54,11 @@ export default function Setup() {
 	const handleSubmitForm = useCallback(() => {}, []);
 
 	if (loading || !info) {
-		return <ActivityIndicator size={"large"} color="red" />;
+		return (
+			<View style={styles.container}>
+				<ActivityIndicator size={"large"} color="red" />
+			</View>
+		);
 	}
 	if (error) {
 		return <Text>{error.message}</Text>;

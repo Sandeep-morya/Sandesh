@@ -6,6 +6,7 @@ import Logo from "../../src/components/common/Logo";
 import TabBarIcon from "../../src/components/home/TabBarIcon";
 import * as Notifications from "expo-notifications";
 import SocketContextProvider from "../../src/provider/SocketProvider";
+import ChatroomHeader from "../../src/components/chat/ChatRoomHeader";
 Notifications.setNotificationHandler({
 	handleNotification: async () => ({
 		shouldShowAlert: true,
@@ -71,7 +72,7 @@ export default () => (
 				options={{
 					href: null,
 					tabBarStyle: { display: "none" },
-					headerShown: false,
+					header: () => <ChatroomHeader />,
 				}}
 			/>
 		</Tabs>
