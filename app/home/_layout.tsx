@@ -27,12 +27,15 @@ export default () => (
 				headerLeft: () => <Logo />,
 
 				tabBarStyle: {
-					height: 60,
-					padding: 5,
-					...theme.bg,
-					shadowRadius: 0,
-					borderColor: "#130429",
+					height: 70,
+					paddingTop: 10,
+
+					// borderTopStartRadius: 10,
+					// borderTopEndRadius: 10,
+					borderColor: "#332449",
+					backgroundColor: "#130429",
 				},
+
 				tabBarActiveTintColor: "white",
 				tabBarInactiveTintColor: theme.dimmedText.color,
 				tabBarShowLabel: false,
@@ -61,6 +64,14 @@ export default () => (
 						<TabBarIcon name="people-outline" {...props} />
 					),
 					title: "People",
+				}}
+			/>
+			<Tabs.Screen
+				name="[chatroom]"
+				options={{
+					href: null,
+					tabBarStyle: { display: "none" },
+					headerShown: false,
 				}}
 			/>
 		</Tabs>

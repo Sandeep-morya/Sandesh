@@ -1,6 +1,7 @@
 ﻿import { View, StyleSheet } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import theme from "../../globalStyle";
 
 interface IProps {
 	name: any;
@@ -11,12 +12,12 @@ interface IProps {
 
 export default function TabBarIcon(props: IProps) {
 	return (
-		<View
-			style={[
-				styles.iconWrapper,
-				{ backgroundColor: props.focused ? "#fff2" : "none" },
-			]}>
-			<Ionicons name={props.name} color={props.color} size={25} />
+		<View style={styles.iconWrapper}>
+			<Ionicons
+				name={props.name}
+				color={props.focused ? theme.primary.color : props.color}
+				size={props.focused ? 30 : 25}
+			/>
 		</View>
 	);
 }
