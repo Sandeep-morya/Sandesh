@@ -38,7 +38,7 @@ const userSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchUserData.fulfilled, (_, action) => {
+		.addCase(fetchUserData.fulfilled, (_, action) => {
 				return action.payload;
 			})
 			.addCase(fetchUserData.pending, (state) => {

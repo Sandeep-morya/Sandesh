@@ -1,21 +1,22 @@
 ﻿import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import theme from "./globalStyle";
+import { MessageType } from "../types";
+import { useSelector } from "./utils/redux";
 
-interface IMessage {
-	id: number;
-	content: string;
-	user: string;
-}
+export default function Message({ sender, recipient, content }: MessageType) {
+	const { info } = useSelector((store) => store.user);
 
-export default function Message({ user, content }: IMessage) {
-	const style = user === "akash" ? styles.akashMessage : styles.sandeepMessage;
+	if (!info) {
+		return <></>;
+	}
+
+	const style =
+		sender === info._id ? styles.akashMessage : styles.sandeepMessage;
 
 	return (
 		<View style={[styles.messageContainer, style]}>
-			<Text style={[styles.messageText, user === "akash" && styles.akashText]}>
-				{content}
-			</Text>
+			<Text style={[styles.messageText]}>{content}</Text>
 		</View>
 	);
 }
@@ -47,8 +48,5 @@ const styles = StyleSheet.create({
 		color: "black",
 		fontFamily: "open-sans",
 		fontSize: 14,
-	},
-	akashText: {
-		color: "white",
 	},
 });

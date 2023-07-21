@@ -4,6 +4,7 @@ import theme from "../../src/globalStyle";
 import Input from "../../src/components/common/Input";
 import useSocket from "../../src/hooks/useSocket";
 import Button from "../../src/components/common/Button";
+import ActiveUsers from "../../src/components/people/ActiveUsers";
 
 export default function People() {
 	const socket = useSocket();
@@ -19,7 +20,7 @@ export default function People() {
 	return (
 		<ScrollView
 			style={{ backgroundColor: "#100020" }}
-			contentContainerStyle={{ padding: 8 }}>
+			contentContainerStyle={{ padding: 10 }}>
 			{/* <Text style={styles.heading}>Find Peoples around the world</Text> */}
 			<Input
 				value={searchText}
@@ -29,7 +30,10 @@ export default function People() {
 				height={55}
 				icon="search"
 			/>
-			<Button onPress={() => sendInstantMessage(searchText)}>Send</Button>
+
+			<View style={styles.tabs}>
+				<ActiveUsers />
+			</View>
 		</ScrollView>
 	);
 }
@@ -37,5 +41,8 @@ export default function People() {
 const styles = StyleSheet.create({
 	heading: {
 		...theme.text,
+	},
+	tabs: {
+		padding: 10,
 	},
 });

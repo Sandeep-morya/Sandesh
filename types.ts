@@ -38,3 +38,15 @@ export interface IUserSlice {
 	info: IUser | null;
 	// settings:IUserSetting
 }
+
+export interface MessageType {
+	sender: string;
+	recipient: string;
+	content: string;
+	createdAt: string;
+}
+
+export interface ChatSlice {
+	activeUsers: string[] | null;
+	messages: MessageType[] | null;
+}

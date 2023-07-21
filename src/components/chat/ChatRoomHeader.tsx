@@ -34,7 +34,7 @@ export default function ChatroomHeader() {
 			<View style={styles.rightSection}>
 				<Ionicons name="videocam-outline" size={24} color={theme.text.color} />
 				<MaterialIcons name="add-call" size={24} color={theme.text.color} />
-				<MaterialIcons name="info" size={24} color={theme.text.color} />
+				<MaterialIcons name="info-outline" size={24} color={theme.text.color} />
 			</View>
 		</View>
 	);

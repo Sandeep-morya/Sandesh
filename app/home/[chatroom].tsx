@@ -14,6 +14,8 @@ import { FlashList } from "@shopify/flash-list";
 import Chip from "../../src/Chip";
 import Message from "../../src/Message";
 import theme from "../../src/globalStyle";
+import { MessageType } from "../../types";
+import { useSelector } from "../../src/utils/redux";
 
 const suggestions = [
 	"Hi",
@@ -24,37 +26,28 @@ const suggestions = [
 	"Good Night",
 ];
 
-interface IMessage {
-	id: number;
-	content: string;
-	user: string;
-}
-
-const allMessages: IMessage[] = [
-	{ id: 0, content: "How are you ?", user: "sandeep" },
-	{ id: 1, content: "I am fine.", user: "akash" },
-	{ id: 2, content: "What about you ?", user: "sandeep" },
-	{ id: 3, content: "I am also fine.", user: "akash" },
-];
-
-export default function Chat() {
+export default function ChatRoom() {
+	const { info } = useSelector((store) => store.user);
 	const { chatroom } = useGlobalSearchParams();
 	const [message, setMessage] = useState("");
-	const [messages, setMessages] = useState(allMessages);
+	const [messages, setMessages] = useState<MessageType[]>([]);
 	const [active, setActive] = useState(false);
 	const flashListRef = useRef<any>(null);
 
 	const sendMessage = useCallback(
 		(content: string) => {
-			const newMessage: IMessage = {
-				id: Math.random(),
+			if (info && chatroom) {
+			}
+			const newMessage: MessageType = {
+				sender: info._id,
+				recipient: chatroom as string,
 				content,
-				user: active ? "sandeep" : "akash",
+				createdAt: Date.now().toString(),
 			};
 			setMessages((prevMessages) => [...prevMessages, newMessage]);
 			setMessage("");
 		},
-		[active],
+		[info, chatroom],
 	);
 
 	return (
@@ -82,7 +75,7 @@ export default function Chat() {
 			<View style={{ flex: 1 }}>
 				<FlashList
 					ref={flashListRef}
-					data={messages as IMessage[]}
+					data={messages}
 					keyboardShouldPersistTaps="never"
 					renderItem={({ item }) => <Message {...item} />}
 					estimatedItemSize={50}

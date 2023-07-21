@@ -18,6 +18,7 @@ import EmptyMessageComponent from "../../src/components/chat/EmptyMessageCompone
 const messages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export default function Messages() {
 	const { info } = useSelector((store) => store.user);
+
 	// console.log(info?.verified, info?.username);
 	const [searchText, setSearchText] = useState("");
 	return (
