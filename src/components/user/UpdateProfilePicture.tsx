@@ -19,14 +19,12 @@ const UPDATE_USER = gql`
 export default function UpdateProfilePicture({ token }: IProps) {
 	const { info } = useSelector((store) => store.user);
 	const [updateUser, { loading }] = useMutation(UPDATE_USER);
-	const [profilePicture, setProfilePicture] = useState(
-		info?.image || require("../../../assets/no-user.jpg"),
-	);
+	const [profilePicture, setProfilePicture] = useState(info?.image);
 	return (
 		<View style={styles.profilePictureWrapper}>
 			<Image
 				style={styles.profilePicture}
-				source={profilePicture}
+				source={{ uri: profilePicture }}
 				alt="user-profile-picture"
 			/>
 			{loading && (

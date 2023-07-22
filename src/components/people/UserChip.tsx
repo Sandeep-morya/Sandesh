@@ -39,13 +39,7 @@ export default function UserChip({ id }: { id: string }) {
 	return (
 		<View style={styles.userWrapper}>
 			<Pressable style={styles.imageWrapper}>
-				<Image
-					style={styles.image}
-					source={
-						image ? { uri: image } : require("../../../assets/no-user.jpg")
-					}
-					alt=""
-				/>
+				<Image style={styles.image} source={{ uri: image }} alt="" />
 			</Pressable>
 			<View style={styles.userdata}>
 				<Text numberOfLines={1} style={styles.name}>
@@ -61,7 +55,12 @@ export default function UserChip({ id }: { id: string }) {
 					name="chatbubble-ellipses-outline"
 					size={28}
 					color={theme.primary.color}
-					onPress={() => router.push(`/home/${id}`)}
+					onPress={() =>
+						router.push({
+							pathname: `/home/${id}`,
+							params: { id, image, name, username },
+						})
+					}
 				/>
 				<MaterialIcons
 					name="info-outline"

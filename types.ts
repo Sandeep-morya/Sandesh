@@ -38,12 +38,13 @@ export interface IUserSlice {
 	info: IUser | null;
 	// settings:IUserSetting
 }
-
+type MessageStatus = "Pending" | "Sent" | "Recieved";
 export interface MessageType {
 	sender: string;
 	recipient: string;
 	content: string;
-	createdAt: string;
+	createdAt: Date;
+	status: MessageStatus;
 }
 
 export interface ChatSlice {

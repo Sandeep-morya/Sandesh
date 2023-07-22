@@ -15,9 +15,7 @@ const SocketContextProvider = ({ children }: PropsWithChildren) => {
 	const { info } = useSelector((store) => store.user);
 	const socket = useMemo(
 		() =>
-			info
-				? io("http://192.168.88.239:4000", { query: { id: info._id } })
-				: null,
+			info ? io("http://192.168.1.4:4000", { query: { id: info._id } }) : null,
 		[info],
 	);
 

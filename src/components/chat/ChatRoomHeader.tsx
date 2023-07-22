@@ -1,12 +1,14 @@
 ﻿import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import theme from "../../globalStyle";
+import { useSelector } from "../../utils/redux";
 
-export default function ChatroomHeader() {
-	const router = useRouter();
+export default function ChatroomHeader(user: any) {
+	const { activeUsers } = useSelector((store) => store.chatReducer);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.leftSection}>
@@ -19,15 +21,21 @@ export default function ChatroomHeader() {
 
 				<Image
 					style={styles.logo}
-					source={{ uri: "https://picsum.photos/50" }}
+					source={{
+						uri: "https://res.cloudinary.com/due9pi68z/image/upload/v1681283815/aspuvrjmiwgyhyxig8dz.png",
+					}}
 					alt="user-avatar"
 				/>
 				<View style={styles.about}>
 					<Text numberOfLines={1} style={styles.name}>
-						Random Kumar Maurya
+						{user.name}
 					</Text>
 					<Text numberOfLines={1} style={styles.lastseen}>
-						last seen 3:14pm
+						{user.typing
+							? "Typing..."
+							: activeUsers.includes(user.id)
+							? "Online"
+							: "last seen 3:14pm"}
 					</Text>
 				</View>
 			</View>

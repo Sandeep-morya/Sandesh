@@ -72,7 +72,7 @@ export default () => (
 				options={{
 					href: null,
 					tabBarStyle: { display: "none" },
-					header: () => <ChatroomHeader />,
+					headerShown: false,
 				}}
 			/>
 		</Tabs>
