@@ -27,7 +27,7 @@ export default function Message(props: MessageType) {
 			marginVertical: 5,
 			backgroundColor: sender === info._id ? "white" : theme.primary.color,
 			flexDirection: "row",
-			gap: 10,
+			colomnGap: 10,
 			flexWrap: "wrap",
 		},
 
