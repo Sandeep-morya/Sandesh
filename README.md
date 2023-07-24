@@ -15,14 +15,7 @@
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/Sandesh?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/Sandesh?color=56BEB8">
-
-  <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/Sandesh?color=56BEB8" />
-
-  <img alt="Github forks" src="https://img.shields.io/github/forks/Sandeep-morya/Sandesh?color=56BEB8" />
-
- <img alt="Github stars" src="https://img.shields.io/github/stars/Sandeep-morya/Sandesh?color=56BEB8" />
-</p>
+  <
 
 Status
 
